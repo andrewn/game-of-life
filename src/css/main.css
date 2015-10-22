@@ -1,1 +1,20 @@
 @import 'normalize.css/normalize';
+
+
+
+.row {
+  overflow: hidden;
+}
+
+.cell {
+  box-sizing: border-box;
+  float: left;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #666;
+  background: white;
+}
+
+.cell.alive{
+  background: blue;
+}

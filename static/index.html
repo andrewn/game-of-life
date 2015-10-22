@@ -5,7 +5,18 @@
     <link rel="stylesheet" href="bundle.css">
   </head>
   <body>
-    <h1>Hello</h1>
+    <h1>Game of Life</h1>
+    <script type="text/ractive" id="template">
+      {{#state:x}}
+        <div class="row">
+        {{#.:y}}
+          <div on-click="toggle:{{x}},{{y}}" class="cell {{ . === 1 ? 'alive' : 'dead'}}"></div>
+        {{/}}
+        </div>
+      {{/}}
+      <button on-click="start">Start</button>
+    </script>
+    <div id="game-of-life"></div>
     <script src="bundle.js" charset="utf-8"></script>
   </body>
 </html>
