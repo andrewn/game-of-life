@@ -16625,7 +16625,7 @@
 var Ractive = require('ractive');
 
 console.log('init');
-var INTERVAL = 500;
+var TICK_INTERVAL_MS = 500;
 
 var glider = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]],
     intervalId,
@@ -16642,7 +16642,7 @@ function init() {
     data: { state: initialState },
     oninit: function oninit() {
       this.on('start', function () {
-        startTicking(initialState);
+        intervalId = startTicking(initialState);
       });
 
       this.on('toggle', function (evt, x, y) {
@@ -16657,13 +16657,10 @@ function init() {
 
 function startTicking(initialState) {
   var currentState = initialState;
-
-  // writeState(initialState);
-  intervalId = setInterval(function () {
+  return setInterval(function () {
     currentState = tick(currentState);
     ui.set('state', currentState);
-    // writeState(currentState);
-  }, INTERVAL);
+  }, TICK_INTERVAL_MS);
 }
 
 function tick(state) {
