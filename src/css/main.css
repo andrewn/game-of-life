@@ -9,16 +9,16 @@
 .cell {
   box-sizing: border-box;
   float: left;
-  /*width: 20px;
-  height: 20px;*/
   width: 12.5vw;
   height: 12.5vw;
-  border: 1px solid #666;
-  background: white;
+  border: 5px white solid;
+  border-radius: 50%;
+  background-color: rgb(240, 240, 240);
+  transition: background-color 0.3s ease-out;
 }
 
 .cell.alive{
-  background: blue;
+  background-color: #ee6600;
 }
 
 .actions > button {
