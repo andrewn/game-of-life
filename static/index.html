@@ -7,14 +7,17 @@
   <body>
     <h1>Game of Life</h1>
     <script type="text/ractive" id="template">
+      <span>Generation: {{generation}}</span>
       {{#state:x}}
         <div class="row">
         {{#.:y}}
-          <div on-click="toggle:{{x}},{{y}}" class="cell {{ . === 1 ? 'alive' : 'dead'}}"></div>
+          <div on-click="toggle:{{x}},{{y}}" class="cell {{ . ? 'alive' : 'dead'}}"></div>
         {{/}}
         </div>
       {{/}}
       <button on-click="start">Start</button>
+      <button on-click="step">Step &gt;</button>
+      <button on-click="stop">Stop</button>
     </script>
     <div id="game-of-life"></div>
     <script src="bundle.js" charset="utf-8"></script>

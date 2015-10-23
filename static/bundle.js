@@ -28984,7 +28984,6 @@ console.log('init');
 var TICK_INTERVAL_MS = 500;
 
 var glider = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]],
-    intervalId,
     ui;
 
 init();
@@ -28995,10 +28994,24 @@ function init() {
   ui = new Ractive({
     el: '#game-of-life',
     template: '#template',
-    data: { state: initialState },
+    data: { state: initialState, generation: 0 },
     oninit: function oninit() {
+      var intervalId;
+
       this.on('start', function () {
-        intervalId = startTicking(initialState);
+        var state = this.get('state');
+        if (!intervalId) {
+          intervalId = startTicking(state);
+        }
+      });
+
+      this.on('stop', function () {
+        stopTicking(intervalId);
+        intervalId = null;
+      });
+
+      this.on('step', function () {
+        tickAndRender(this);
       });
 
       this.on('toggle', function (evt, x, y) {
@@ -29013,10 +29026,19 @@ function init() {
 
 function startTicking(initialState) {
   var currentState = initialState;
-  return setInterval(function () {
-    currentState = tick(currentState);
-    ui.set('state', currentState);
-  }, TICK_INTERVAL_MS);
+  return setInterval(tickAndRender.bind(null, ui), TICK_INTERVAL_MS);
+}
+
+function stopTicking(id) {
+  clearInterval(id);
+}
+
+function tickAndRender(ui) {
+  var currentState = ui.get('state'),
+      newState;
+  newState = tick(currentState);
+  ui.set('state', newState);
+  ui.add('generation');
 }
 
 function tick(state) {
