@@ -1,6 +1,8 @@
 var Ractive = require('ractive');
 var lodash = require('lodash');
 
+require('ractive-touch');
+
 console.log('init');
 var TICK_INTERVAL_MS = 500;
 

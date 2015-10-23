@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title></title>
     <link rel="stylesheet" href="bundle.css">
   </head>
@@ -11,14 +12,17 @@
       {{#state:x}}
         <div class="row">
         {{#.:y}}
-          <div on-click="toggle:{{x}},{{y}}"
+          <div  on-tap="toggle:{{x}},{{y}}"
+
                 class="cell {{ . ? 'alive' : 'dead'}}"></div>
         {{/}}
         </div>
       {{/}}
-      <button on-click="start">Start</button>
-      <button on-click="step">Step &gt;</button>
-      <button on-click="stop">Stop</button>
+      <div class="actions">
+        <button on-click="start">Start</button>
+        <button on-click="step">Step &gt;</button>
+        <button on-click="stop">Stop</button>
+      </div>
     </script>
     <div id="game-of-life"></div>
     <script src="bundle.js" charset="utf-8"></script>
