@@ -11,7 +11,8 @@
       {{#state:x}}
         <div class="row">
         {{#.:y}}
-          <div on-click="toggle:{{x}},{{y}}" class="cell {{ . ? 'alive' : 'dead'}}"></div>
+          <div on-click="toggle:{{x}},{{y}}"
+                class="cell {{ . ? 'alive' : 'dead'}}"></div>
         {{/}}
         </div>
       {{/}}
