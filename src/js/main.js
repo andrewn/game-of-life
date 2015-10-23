@@ -1,4 +1,5 @@
 var Ractive = require('ractive');
+var lodash = require('lodash');
 
 console.log('init');
 var TICK_INTERVAL_MS = 500;
@@ -32,7 +33,7 @@ function init() {
       this.on('toggle', function (evt, x, y) {
         var state = this.get('state');
         var cell = state[x][y];
-        state[x][y] = cell === 1 ? 0 : 1;
+        state[x][y] = cell ? 0 : 1;
         this.set('state', state);
       });
     }
@@ -58,15 +59,17 @@ function tick(state) {
 
 function numNeighbours(state, x, y) {
   var num = 0;
-  for (var i = x-1; i <= x+1; i++) {
-    for (var j = y-1; j <= y+1; j++) {
-      if (i !== x || j !== y) {
-        if( state[i] !== undefined && state[i][j] !== undefined) {
-          num += state[i][j];
+
+  [x - 1, x, x + 1].forEach(function (currX) {
+    [y - 1, y, y + 1].forEach(function (currY) {
+      if (currX !== x || currY !== y) {
+        if( state[currX] !== undefined && state[currX][currY] !== undefined) {
+          num += state[currX][currY];
         }
       }
-    }
-  }
+    });
+  });
+
   return num;
 }
 
