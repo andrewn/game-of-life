@@ -33786,7 +33786,10 @@ function init() {
       });
 
       this.observe('state', function (newValue, oldValue) {
-        broadcaster.publish(newValue);
+        var image = newValue.map(function (row) {
+          return row.join('');
+        });
+        broadcaster.publish(image);
       });
     }
   });

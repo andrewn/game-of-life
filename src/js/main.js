@@ -54,7 +54,8 @@ function init() {
       });
 
       this.observe('state', function (newValue, oldValue) {
-        broadcaster.publish(newValue);
+        var image = newValue.map(row => row.join(''));
+        broadcaster.publish(image);
       });
     }
   });
