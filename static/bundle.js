@@ -46210,16 +46210,4 @@ function newState(currentState, numNeighbours) {
   }
 }
 
-function writeState(state) {
-  var html = state.map(function (row) {
-    var rowHtml = row.map(function (cell) {
-      var alive = cell ? 'alive' : '';
-      return '<div class="cell ' + alive + '"></div>';
-    });
-    return '<div class="row">' + rowHtml.join('') + '</div>';
-  }).join('');
-
-  document.getElementById('game-of-life').innerHTML = html;
-}
-
 },{"./broadcaster":84,"lodash":35,"ractive":83,"ractive-touch":82}]},{},[85]);

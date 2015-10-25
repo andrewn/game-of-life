@@ -125,16 +125,3 @@ function newState(currentState, numNeighbours) {
     return 0;
   }
 }
-
-
-function writeState(state) {
-  var html =  state.map(function (row) {
-    var rowHtml = row.map(function (cell) {
-      var alive = cell ? 'alive' : '';
-      return '<div class="cell ' + alive + '"></div>';
-    });
-    return '<div class="row">' + rowHtml.join('') + '</div>';
-  }).join('');
-
-  document.getElementById('game-of-life').innerHTML = html;
-}
