@@ -46072,7 +46072,7 @@ module.exports = function () {
   instance.publish = function (msg) {
     var payload = JSON.stringify(msg);
     connectPromise.then(function (client) {
-      client.publish(topic, payload);
+      client.publish(topic, payload, { retain: true });
     });
   };
 
