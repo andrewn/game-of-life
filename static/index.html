@@ -19,11 +19,11 @@
         </div>
       {{/}}
       <div class="actions {{ isRunning ? 'is-running' : '' }}">
-        <button on-click="startStop">
+        <button on-tap="startStop">
           <span class="start">Start</span>
           <span class="stop">Stop</span>
         </button>
-        <button class="step" on-click="step">Step &gt;</button>
+        <button class="step" on-tap="step">Step &gt;</button>
       </div>
     </script>
     <div id="game-of-life"></div>
