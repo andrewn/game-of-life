@@ -7,7 +7,7 @@
     "start": "node static-server.js",
     "deploy": "surge ./static",
     "build": "npm run build-js && npm run build-css",
-    "build-js": "browserify --debug src/js/main.js -p [minifyify --map static/bundle.map.json --output static/bundle.map.json] -t babelify --outfile static/bundle.min.js",
+    "build-js": "browserify --debug src/js/main.js -p [minifyify --map bundle.map.json --output static/bundle.map.json] -t babelify --outfile static/bundle.min.js",
     "build-css": "postcss --config ./config/postcss-config.js --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
     "watch-js": "watchify src/js/main.js -t babelify --outfile static/bundle.js",
     "watch-css": "postcss --config ./config/postcss-config.js --watch --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
