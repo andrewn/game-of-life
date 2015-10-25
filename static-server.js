@@ -7,6 +7,10 @@ var express = require('express');
 
 var app = express();
 
+app.get('/bundle.min.js', function (req, res) {
+  res.redirect('/bundle.js');
+});
+
 app.use(express.static('static'));
 
 var server = app.listen(process.env.PORT || 3000, function () {
