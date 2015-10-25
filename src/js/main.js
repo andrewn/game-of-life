@@ -1,5 +1,4 @@
 var Ractive = require('ractive');
-var lodash = require('lodash');
 var broadcaster = require('./broadcaster')();
 
 require('ractive-touch');
