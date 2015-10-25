@@ -25,20 +25,21 @@ function init() {
   ui = new Ractive({
     el: '#game-of-life',
     template: '#template',
-    data: { state: initialState, generation: 0 },
+    data: { state: initialState, generation: 0, isRunning: false },
     oninit: function () {
       var intervalId;
 
-      this.on('start', function () {
-        var state = this.get('state');
-        if (!intervalId) {
+      this.on('startStop', function () {
+        var isRunning = this.get('isRunning'),
+            state = this.get('state');
+        if (isRunning) {
+          stopTicking(intervalId);
+          intervalId = null;
+          this.set('isRunning', false);
+        } else {
           intervalId = startTicking(state);
+          this.set('isRunning', true);
         }
-      });
-
-      this.on('stop', function () {
-        stopTicking(intervalId);
-        intervalId = null;
       });
 
       this.on('step', function () {

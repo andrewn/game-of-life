@@ -446,12 +446,50 @@ th {
 }
 
 .actions > button {
+  position: relative;
   box-sizing: border-box;
   display: block;
   float: left;
-  width: 33vw;
+  width: 50vw;
   height: 100px;
+  line-height: 100px;
   font-weight: bold;
   border: 1px solid #fff;
   background: #eee;
+
+  -webkit-transition: width 0.75s ease-in-out, background 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+          transition: width 0.75s ease-in-out, background 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
+.actions > button:hover {
+  background: #ddd;
+}
+
+.is-running button {
+  width: 100vw;
+}
+
+.is-running button.step {
+  width: 0;
+}
+
+.actions > button > span {
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: opacity 0.3s ease-in-out;
+          transition: opacity 0.3s ease-in-out;
+}
+
+.step  { opacity: 1; }
+.start { opacity: 1; }
+.stop  { opacity: 0; }
+
+.is-running .step  { opacity: 0; }
+.is-running .start { opacity: 0; }
+.is-running .stop  { opacity: 1; }
