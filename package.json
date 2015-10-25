@@ -26,6 +26,7 @@
     "autoprefixer": "^6.0.3",
     "babelify": "~6.3.0",
     "browserify": "~11.2.0",
+    "mqtt": "^1.4.3",
     "normalize.css": "^3.0.3",
     "postcss": "^5.0.10",
     "postcss-cli": "^2.2.0",

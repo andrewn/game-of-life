@@ -1,5 +1,6 @@
 var Ractive = require('ractive');
 var lodash = require('lodash');
+var broadcaster = require('./broadcaster')();
 
 require('ractive-touch');
 
@@ -51,6 +52,10 @@ function init() {
         var cell = state[x][y];
         state[x][y] = cell ? 0 : 1;
         this.set('state', state);
+      });
+
+      this.observe('state', function (newValue, oldValue) {
+        broadcaster.publish(newValue);
       });
     }
   });
