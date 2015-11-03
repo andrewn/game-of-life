@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node static-server.js",
     "deploy": "surge ./static",
-    "build": "npm run build-js && npm run build-css",
-    "build-js": "browserify --debug src/js/main.js -p [minifyify --map bundle.map.json --output static/bundle.map.json] -t babelify --outfile static/bundle.min.js",
-    "build-css": "postcss --config ./config/postcss-config.js --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
-    "watch-js": "watchify src/js/main.js -t babelify --outfile static/bundle.js",
-    "watch-css": "postcss --config ./config/postcss-config.js --watch --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
+    "build": "npm-run-all --parallel build:js build:css",
+    "build:js": "browserify --debug src/js/main.js -p [minifyify --map bundle.map.json --output static/bundle.map.json] -t babelify --outfile static/bundle.min.js",
+    "build:css": "postcss --config ./config/postcss-config.js --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
+    "watch": "npm-run-all --parallel watch:js watch:css",
+    "watch:js": "watchify src/js/main.js --verbose -t babelify --outfile static/bundle.js",
+    "watch:css": "postcss --config ./config/postcss-config.js --watch --use postcss-import --use autoprefixer --output static/bundle.css src/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Andrew Nicolaou <me@andrewnicolaou.co.uk>",
