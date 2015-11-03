@@ -1,7 +1,7 @@
 {
-  "name": "smallpdf-intervieww",
+  "name": "game-of-life",
   "version": "1.0.0",
-  "description": "smallpdf interview",
+  "description": "Conway's Game of Life web app",
   "repository": ".",
   "scripts": {
     "start": "node static-server.js",
